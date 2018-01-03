@@ -1,0 +1,279 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module dictionary</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>dictionary</strong></big></big> (version 1.0)</font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/gcmq/conlang/dic/dictionary.py">/home/gcmq/conlang/dic/dictionary.py</a></font></td></tr></table>
+    <p><tt>#coding:&nbsp;utf-8</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="codecs.html">codecs</a><br>
+<a href="json.html">json</a><br>
+</td><td width="25%" valign=top><a href="pprint.html">pprint</a><br>
+<a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="shlex.html">shlex</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="controll.html#controll">controll.controll</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="dictionary.html#dictionary">dictionary</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="dictionary">class <strong>dictionary</strong></a>(<a href="controll.html#controll">controll.controll</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="dictionary-__init__"><strong>__init__</strong></a>(self, path<font color="#909090">=None</font>)</dt><dd><tt><a href="controll.html#controll">controll</a>インスタンスを作成する.<br>
+&nbsp;<br>
+path:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;セーブデータへのパス</tt></dd></dl>
+
+<dl><dt><a name="dictionary-command"><strong>command</strong></a>(self, command)</dt><dd><tt><a href="controll.html#controll">controll</a>クラスのcommandメソッドを継承したもの</tt></dd></dl>
+
+<dl><dt><a name="dictionary-lookup"><strong>lookup</strong></a>(self, spelling)</dt><dd><tt>単語を引く<br>
+&nbsp;<br>
+spelling:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;単語を指定する.&nbsp;いずれ正規表現に対応する予定</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="dictionary-show"><strong>show</strong></a>(cr)</dt><dd><tt>単語entryの全体を表示する.</tt></dd></dl>
+
+<dl><dt><a name="dictionary-showData"><strong>showData</strong></a>(indent, dic, keys)</dt><dd><tt>単語entryの表示を楽にする.&nbsp;dicデータ内の指定されたkeysに対する<br>
+内容を全て表示する.<br>
+&nbsp;<br>
+indent:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;インデントのスペースの数<br>
+&nbsp;<br>
+dic:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;表示する単語データ<br>
+&nbsp;<br>
+keys:&nbsp;str[]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;キーのリスト</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="controll.html#controll">controll.controll</a>:<br>
+<dl><dt><a name="dictionary-addHistory"><strong>addHistory</strong></a>(self, command)</dt><dd><tt>実行したコマンドを履歴に保存する.&nbsp;このメソッドは自動的に<br>
+実行される.&nbsp;なので明示的に実行する必要はない.<br>
+&nbsp;<br>
+command:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;実行したコマンドの文字列</tt></dd></dl>
+
+<dl><dt><a name="dictionary-changeCurrent"><strong>changeCurrent</strong></a>(self, path)</dt><dd><tt>指定したパスからentryインスタンスを取得する.<br>
+ただし,&nbsp;パスの指定先は辞書データである必要がある.<br>
+そうでなければ何もしない.<br>
+&nbsp;<br>
+path:&nbsp;str&nbsp;(/aaa/1/bbb/3/ccc/0/,&nbsp;../bbb/1,&nbsp;./ccc/5)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;パスを指定する.&nbsp;Unixのようにパスを書ける.</tt></dd></dl>
+
+<dl><dt><a name="dictionary-exac"><strong>exac</strong></a>(self, path, comKey, args)</dt><dd><tt>指定のパスを辿った先のentryに対して操作を行う.<br>
+操作は関数を渡すことで実行する.<br>
+&nbsp;<br>
+path:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;entyrへのパスを指定する.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;例:&nbsp;entryへのパス<br>
+&nbsp;&nbsp;&nbsp;&nbsp;--<br>
+&nbsp;&nbsp;&nbsp;&nbsp;centents.1/examples.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;[contents.1,&nbsp;examples.2]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&gt;&nbsp;[(contents,&nbsp;1),&nbsp;(examples,&nbsp;2)]<br>
+&nbsp;<br>
+command:&nbsp;function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;processインスタンスに行う操作を関数として指定する.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ラムダ式を使うと,&nbsp;複数パラメータを持つ操作でも指定<br>
+&nbsp;&nbsp;&nbsp;&nbsp;のインスタンスに適用することができる.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;f(n,&nbsp;m,&nbsp;...)&nbsp;-&gt;&nbsp;h(process)<br>
+&nbsp;<br>
+args:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;command&nbsp;の引数となるリスト</tt></dd></dl>
+
+<dl><dt><a name="dictionary-find"><strong>find</strong></a>(self, cond)</dt><dd><tt>entryを検索する.&nbsp;条件関数が真となるentryを抽出して<br>
+そのIDとともにタプルにしてリストに保存する.<br>
+&nbsp;<br>
+出力:&nbsp;print<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(ID0,&nbsp;entry0)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(ID1,&nbsp;entry1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(ID2,&nbsp;entry2)<br>
+&nbsp;<br>
+cond:&nbsp;function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;検索するentryの条件を指定する関数.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;この関数の返り値はBooleanである.</tt></dd></dl>
+
+<dl><dt><a name="dictionary-readScript"><strong>readScript</strong></a>(self, path)</dt><dd><tt>スクリプトファイルを読み込んでコマンドを実行する.<br>
+スクリプトはコマンドを一行ずつならべて記述する.<br>
+コマンドの書き方はcommandメソッド参照.<br>
+&nbsp;<br>
+path:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;スクリプトファイルのパス</tt></dd></dl>
+
+<dl><dt><a name="dictionary-save"><strong>save</strong></a>(self, path)</dt><dd><tt>rootEntryをJSONファイルとして保存する.<br>
+&nbsp;<br>
+出力:&nbsp;file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dataの内容をJSONファイルに出力<br>
+&nbsp;<br>
+data:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;JSONファイルに保存する辞書データ.<br>
+&nbsp;<br>
+path:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;保存先のパスを指定する.</tt></dd></dl>
+
+<dl><dt><a name="dictionary-showHistory"><strong>showHistory</strong></a>(self)</dt><dd><tt>コマンド実行履歴の表示する.<br>
+&nbsp;<br>
+出力:&nbsp;print<br>
+&nbsp;&nbsp;&nbsp;&nbsp;実行したコマンドの一覧</tt></dd></dl>
+
+<hr>
+Static methods inherited from <a href="controll.html#controll">controll.controll</a>:<br>
+<dl><dt><a name="dictionary-addEntry"><strong>addEntry</strong></a>(cr, key, template, key2)</dt><dd><tt>entryを新規作成する.&nbsp;作成したものはcurrent変数に格納される.<br>
+柵際したものは,&nbsp;現在選択中のentryにしか追加できない.<br>
+&nbsp;<br>
+cr:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;編集対象の辞書データ<br>
+&nbsp;<br>
+key:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;編集対象の辞書データのキーを指定<br>
+&nbsp;<br>
+template:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;テンプレートファイルのパス<br>
+&nbsp;<br>
+key2:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;テンプレートを指定するキー</tt></dd></dl>
+
+<dl><dt><a name="dictionary-getAbsPath"><strong>getAbsPath</strong></a>(ab, path)</dt><dd><tt>現在の絶対パスと移動先のパスを合わせて,&nbsp;新たに絶対パスを作成する.<br>
+&nbsp;<br>
+return:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;生成たれた絶対パス.&nbsp;生成された絶対パスの最後尾には/が付かない.<br>
+&nbsp;<br>
+ab:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;現在の絶対パス<br>
+&nbsp;<br>
+path:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;移動先のパス.&nbsp;もしこれが/から始まれば,&nbsp;pathが次の絶対パスになる.</tt></dd></dl>
+
+<dl><dt><a name="dictionary-getEntryWithPath"><strong>getEntryWithPath</strong></a>(rootEntry, ab, path)</dt><dd><tt>rootEntyを開始としたパスを辿ってデータを取得する.<br>
+子entryは親entryのリストデータに保持されている.<br>
+&nbsp;<br>
+return;&nbsp;(entry,&nbsp;str)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;パス指定先のentryと最終的な絶対パスの2つによるタプル<br>
+&nbsp;<br>
+rootEntry:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ルートとなる辞書データ.<br>
+&nbsp;<br>
+ab:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;current辞書データの絶対パス.&nbsp;これは/で始まる.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;:&nbsp;ルート<br>
+&nbsp;&nbsp;&nbsp;&nbsp;/entries/10&nbsp;:&nbsp;ルートが保持する子entryリストの10番目<br>
+&nbsp;<br>
+path:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;移動先のデータのパス.&nbsp;linuxと同じように記述することが<br>
+&nbsp;&nbsp;&nbsp;&nbsp;できる.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;./&nbsp;:&nbsp;現在地のパス<br>
+&nbsp;&nbsp;&nbsp;&nbsp;../&nbsp;:&nbsp;1つ前のデータへのパス<br>
+&nbsp;&nbsp;&nbsp;&nbsp;../../&nbsp;:&nbsp;&nbsp;2つ前のデータへのパス</tt></dd></dl>
+
+<dl><dt><a name="dictionary-keysOfData"><strong>keysOfData</strong></a>(cr)</dt><dd><tt>リスト以外のデータに対応するキーの一覧を取得する.<br>
+&nbsp;<br>
+cr:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;編集対象の辞書データ</tt></dd></dl>
+
+<dl><dt><a name="dictionary-keysOfLists"><strong>keysOfLists</strong></a>(cr)</dt><dd><tt>リストに対応するキーの一覧を取得する.<br>
+&nbsp;<br>
+cr:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;編集対象の辞書データ</tt></dd></dl>
+
+<dl><dt><a name="dictionary-removeEntry"><strong>removeEntry</strong></a>(cr, key, index)</dt><dd><tt>指定の子entryのある要素を取り除く<br>
+&nbsp;<br>
+cr:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;編集対象の辞書データ<br>
+&nbsp;<br>
+key:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;子entryリストを指定する<br>
+&nbsp;<br>
+index:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;取り除く要素を指定する数字</tt></dd></dl>
+
+<dl><dt><a name="dictionary-setValue"><strong>setValue</strong></a>(cr, key, text)</dt><dd><tt>entryが保持する辞書のデータを変更する.<br>
+ただし,&nbsp;リストデータを変更することはできない.<br>
+また,&nbsp;リストデータへと変更するこのもできない.<br>
+&nbsp;<br>
+cr:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;編集対象の辞書データ<br>
+&nbsp;<br>
+key:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;変更するデータに関連するキー<br>
+&nbsp;<br>
+text:&nbsp;str,&nbsp;int,&nbsp;double<br>
+&nbsp;&nbsp;&nbsp;&nbsp;変更先のデータ</tt></dd></dl>
+
+<dl><dt><a name="dictionary-swapEntry"><strong>swapEntry</strong></a>(cr, key, index, index2)</dt><dd><tt>指定の子entryリストの要素を交換する<br>
+&nbsp;<br>
+cr:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;編集対象の辞書データ<br>
+&nbsp;<br>
+key:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;子entryリストを指定する<br>
+&nbsp;<br>
+index,&nbsp;index2:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;交換する要素を指定する数字</tt></dd></dl>
+
+<dl><dt><a name="dictionary-template"><strong>template</strong></a>(path, key)</dt><dd><tt>テンプレートとなる辞書データを生成する.<br>
+データは深層コピーで生成される.<br>
+&nbsp;<br>
+return:&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;テンプレートとなる辞書データ<br>
+&nbsp;<br>
+path:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;テンプレート一覧ファイル(JSON)へのパス<br>
+&nbsp;<br>
+key:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;一覧ファイルから,&nbsp;生成する辞書データに対応する<br>
+&nbsp;&nbsp;&nbsp;&nbsp;キーを指定する.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="controll.html#controll">controll.controll</a>:<br>
+<dl><dt><strong>comCont</strong> = {}</dl>
+
+<dl><dt><strong>comData</strong> = {}</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__author__</strong> = 'glowlight.info'<br>
+<strong>__version__</strong> = '1.0'</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#7799ee">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Author</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#7799ee"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">glowlight.info</td></tr></table>
+</body></html>
