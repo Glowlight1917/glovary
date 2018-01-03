@@ -1,0 +1,29 @@
+{
+    "index": "data_name",
+    "author": "author_name",
+    "version": "x.x.xx",
+    "time": "yyyy.mm.dd",
+    "entries": [
+        {
+            "index": "単語の綴り",
+            "culture": null,
+            "synonyms": [],
+            "definitions": [],
+            "origin": null,
+            "part": null,
+            "IPA": null,
+            "isRegisterd": false,
+            "antonyms": [],
+            "contents": [
+                {
+                    "index": "単語の意味",
+                    "syntax": null,
+                    "type": null,
+                    "examples": [],
+                    "tags": []
+                }
+            ],
+            "relations": []
+        }
+    ]
+}

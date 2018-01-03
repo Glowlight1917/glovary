@@ -1,0 +1,8 @@
+add ./ entries word
+cd entries/0
+ed ./ index 単語の綴り
+add ./ contents contents
+ed ./contents/0 index 単語の意味
+cd ../../
+save test_script_data.json
+show

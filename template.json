@@ -1,0 +1,36 @@
+{
+	"dictionary":{
+		"index": "data_name",
+		"author": "author_name",
+		"time": "yyyy.mm.dd",
+		"version": "x.x.xx",
+		"entries": []
+	},
+
+	"word": {
+		"index": null,
+		"IPA": null,
+		"part": null,
+		"origin": null,
+		"culture": null,
+		"synonyms": [],
+		"antonyms": [],
+		"relations": [],
+		"definitions": [],
+		"contents": [],
+		"isRegisterd": false
+	},
+
+	"contents": {
+		"index": null,
+		"type": null,
+		"syntax": null,
+		"tags": [],
+		"examples": []
+	},
+	
+	"examples": {
+		"sentence": null,
+		"translation": null
+	}
+}
