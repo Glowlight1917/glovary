@@ -1,8 +1,10 @@
 #coding: utf-8
 
+import re
 import json
 import copy
 import shlex
+import pprint
 import traceback
 
 '''
@@ -86,6 +88,21 @@ class controll:
             cr[key] = text
 
     @staticmethod
+    def add(cr, key, data):
+        '''
+        リストに要素を追加する.
+
+        cr: dict
+            編集対象の辞書データ
+
+        key: string
+            編集対象の辞書データのキーを指定
+
+        '''
+        
+        cr[key].append(data)
+
+    @staticmethod
     def addEntry(cr, key, template, key2):
         '''
         entryを新規作成する. 作成したものはcurrent変数に格納される.
@@ -108,7 +125,7 @@ class controll:
         cr[key].append(data)
 
     @staticmethod
-    def swapEntry(cr, key, index, index2):
+    def swap(cr, key, index, index2):
         '''
         指定の子entryリストの要素を交換する
 
@@ -128,7 +145,7 @@ class controll:
             cr[key][int(index)] = temp
 
     @staticmethod
-    def removeEntry(cr, key, index):
+    def remove(cr, key, index):
         '''
         指定の子entryのある要素を取り除く
 
@@ -169,79 +186,6 @@ class controll:
             print('テンプレートファイルが開けない')
             print(e)
         return copy.deepcopy(temp[key])
-
-    #////////////// Static Methods ///////////////
-
-    def find(self, cond):
-        '''
-        entryを検索する. 条件関数が真となるentryを抽出して
-        そのIDとともにタプルにしてリストに保存する.
-        
-        出力: print
-            (ID0, entry0)
-            (ID1, entry1)
-            (ID2, entry2)
-
-        cond: function
-            検索するentryの条件を指定する関数.
-            この関数の返り値はBooleanである.
-        '''
-
-        entryList = []
-        for index, dic in enumerate(self.data['entries']):
-            if cond(dic):
-                entryList.append((index, dic))
-
-        for t in entryList:
-            print(str(t[0]) + ': ' + str(t[1]['index']))
-        
-        return entryList
-
-    def exac(self, path, comKey, args):
-        '''
-        指定のパスを辿った先のentryに対して操作を行う.
-        操作は関数を渡すことで実行する.
-
-        path: str
-            entyrへのパスを指定する.
-
-            例: entryへのパス
-            --
-            centents.1/examples.2
-            -> [contents.1, examples.2]
-            -> [(contents, 1), (examples, 2)]
-
-        command: function
-            processインスタンスに行う操作を関数として指定する.
-            ラムダ式を使うと, 複数パラメータを持つ操作でも指定
-            のインスタンスに適用することができる.
-            f(n, m, ...) -> h(process)
-
-        args: list
-            command の引数となるリスト
-        '''
-        
-        ref = self.getEntryWithPath(self.data, self.pwd, path)[0]
-        if ref == None or not isinstance(ref, dict):
-            return
-        self.comData[comKey](ref, args)
-    
-    def changeCurrent(self, path):
-        '''
-        指定したパスからentryインスタンスを取得する.
-        ただし, パスの指定先は辞書データである必要がある.
-        そうでなければ何もしない.
-
-        path: str (/aaa/1/bbb/3/ccc/0/, ../bbb/1, ./ccc/5)
-            パスを指定する. Unixのようにパスを書ける.
-        '''
-
-        temp = controll.getEntryWithPath(self.data, self.pwd, path)
-        if temp == None or not isinstance(temp[0], dict):
-            return
-        else:
-            self.current = temp[0]
-            self.pwd = temp[1]
 
     @staticmethod
     def getAbsPath(ab, path):
@@ -326,6 +270,86 @@ class controll:
             return
 
         return (temp, pathAbs) 
+
+    @staticmethod
+    def show(cr):
+        '''
+        単語entryの全体を表示する.
+        '''
+        pprint.pprint(cr)
+
+    #////////////// Static Methods ///////////////
+
+    def find(self, spelling):
+        '''
+        entryを検索する. 条件関数が真となるentryを抽出して
+        そのIDとともにタプルにしてリストに保存する.
+        
+        出力: print
+            (ID0, entry0)
+            (ID1, entry1)
+            (ID2, entry2)
+
+        cond: function
+            検索するentryの条件を指定する関数.
+            この関数の返り値はBooleanである.
+        '''
+
+        entryList = []
+        for index, dic in enumerate(self.data['entries']):
+            if re.match(spelling, dic['index']):
+                entryList.append((index, dic))
+
+        for t in entryList:
+            print(str(t[0]) + ': ' + str(t[1]['index']))
+        
+        return entryList
+
+    def exac(self, path, comKey, args):
+        '''
+        指定のパスを辿った先のentryに対して操作を行う.
+        操作は関数を渡すことで実行する.
+
+        path: str
+            entyrへのパスを指定する.
+
+            例: entryへのパス
+            --
+            centents.1/examples.2
+            -> [contents.1, examples.2]
+            -> [(contents, 1), (examples, 2)]
+
+        command: function
+            processインスタンスに行う操作を関数として指定する.
+            ラムダ式を使うと, 複数パラメータを持つ操作でも指定
+            のインスタンスに適用することができる.
+            f(n, m, ...) -> h(process)
+
+        args: list
+            command の引数となるリスト
+        '''
+        
+        ref = self.getEntryWithPath(self.data, self.pwd, path)[0]
+        if ref == None or not isinstance(ref, dict):
+            return
+        self.comData[comKey](ref, args)
+    
+    def changeCurrent(self, path):
+        '''
+        指定したパスからentryインスタンスを取得する.
+        ただし, パスの指定先は辞書データである必要がある.
+        そうでなければ何もしない.
+
+        path: str (/aaa/1/bbb/3/ccc/0/, ../bbb/1, ./ccc/5)
+            パスを指定する. Unixのようにパスを書ける.
+        '''
+
+        temp = controll.getEntryWithPath(self.data, self.pwd, path)
+        if temp == None or not isinstance(temp[0], dict):
+            return
+        else:
+            self.current = temp[0]
+            self.pwd = temp[1]
 
     def showHistory(self):
         '''
@@ -462,17 +486,21 @@ class controll:
         try:
             if len(tup) >= 3: 
                 ref = self.getEntryWithPath(self.data, self.pwd, args[0])[0]
-                if com == 'add': self.addEntry(ref, args[1], 'template.json', args[2])
-                if com == 'rm': self.removeEntry(ref, args[1], args[2])
+                if com == 'add': self.add(ref, args[1], args[2])
+                if com == 'rm': self.remove(ref, args[1], args[2])
                 if com == 'ed': self.setValue(ref, args[1], args[2])
-                if com == 'swap': self.swapEntry(ref, args[1], args[2], args[3])
+                if com == 'swap': self.swap(ref, args[1], args[2], args[3])
 
             if len(tup) == 2:
+                if com == 'ent':
+                    ref = self.getEntryWithPath(self.data, self.pwd, args[0])[0]
+                    self.addEntry(ref, args[1], 'template.json', args[1])
                 if com == 'save': self.save(args[0])
                 if com == 'script': self.readScript(args[0])
                 if com == 'cd': self.changeCurrent(args[0])
 
             if len(tup) == 1:
+                if com == 'show': self.show(self.current)
                 if com == 'hs': self.showHistory()
                 if com == 'exit': system.exit(0)
                 if com == 'cccp': print('\033[33;41;1m *             \033[0m\n\033[33;41m ☭             \033[0m\n\033[33;41m               \033[0m\n\033[33;41m               \033[0m')
