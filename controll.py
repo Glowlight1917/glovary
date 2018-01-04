@@ -487,14 +487,12 @@ class controll:
             if len(tup) >= 3: 
                 ref = self.getEntryWithPath(self.data, self.pwd, args[0])[0]
                 if com == 'add': self.add(ref, args[1], args[2])
+                if com == 'ent': self.addEntry(ref, args[1], 'template.json', args[1])
                 if com == 'rm': self.remove(ref, args[1], args[2])
                 if com == 'ed': self.setValue(ref, args[1], args[2])
                 if com == 'swap': self.swap(ref, args[1], args[2], args[3])
 
             if len(tup) == 2:
-                if com == 'ent':
-                    ref = self.getEntryWithPath(self.data, self.pwd, args[0])[0]
-                    self.addEntry(ref, args[1], 'template.json', args[1])
                 if com == 'save': self.save(args[0])
                 if com == 'script': self.readScript(args[0])
                 if com == 'cd': self.changeCurrent(args[0])
