@@ -1,5 +1,6 @@
 {
 	"dictionary":{
+		"type": "dictionary",
 		"index": "data_name",
 		"author": "author_name",
 		"time": "yyyy.mm.dd",
@@ -8,6 +9,7 @@
 	},
 
 	"word": {
+		"type": "word",
 		"index": null,
 		"IPA": null,
 		"part": null,
@@ -16,21 +18,26 @@
 		"synonyms": [],
 		"antonyms": [],
 		"relations": [],
-		"definitions": [],
-		"contents": [],
-		"isRegisterd": false
+		"def": [],
+		"con": []
 	},
 
-	"contents": {
+	"def": {
+		"type": "def",
 		"index": null,
+		"def": null
+	},
+
+	"con": {
 		"type": null,
+		"index": null,
 		"syntax": null,
 		"tags": [],
-		"examples": []
+		"ex": []
 	},
 	
-	"examples": {
-		"sentence": null,
-		"translation": null
+	"ex": {
+		"sent": null,
+		"trans": null
 	}
 }
